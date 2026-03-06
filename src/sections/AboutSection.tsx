@@ -5,6 +5,7 @@
 
 import { motion } from 'framer-motion';
 import { Code2, Zap, Coffee, BookOpen } from 'lucide-react';
+import eleazar from '../assets/eleazar.png';
 
 // ================================================================
 // ✏️ EDITABLE ZONE — Update all personal details below
@@ -60,8 +61,7 @@ const FUN_FACTS = [
 
 // ✏️ Profile photo — same as hero or a different shot
 // Replace with your own URL or local import
-const ABOUT_PHOTO_URL =
-  'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&h=600&fit=crop&crop=face&auto=format';
+const ABOUT_PHOTO_URL = eleazar;
 
 // ================================================================
 const containerVariants = {
