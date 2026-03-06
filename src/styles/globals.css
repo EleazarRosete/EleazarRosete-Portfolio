@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===============================
+   CSS CUSTOM PROPERTIES — THEME
+   Edit colors here for dark/light
+=============================== */
+:root {
+  --bg-primary: #07070D;
+  --bg-secondary: #0E0E1A;
+  --bg-card: #12121F;
+  --bg-card-hover: #181828;
+  --border: rgba(255,255,255,0.07);
+  --border-bright: rgba(139,92,246,0.4);
+  --text-primary: #F0EFF8;
+  --text-secondary: #9B9AB0;
+  --text-muted: #5A5970;
+  --accent-indigo: #7C3AED;
+  --accent-violet: #A855F7;
+  --accent-blue: #3B82F6;
+  --accent-cyan: #06B6D4;
+  --glow-indigo: rgba(124,58,237,0.35);
+  --glow-violet: rgba(168,85,247,0.25);
+  --glow-blue: rgba(59,130,246,0.3);
+  --nav-bg: rgba(7,7,13,0.85);
+  --gradient-hero: linear-gradient(135deg, #7C3AED 0%, #3B82F6 50%, #06B6D4 100%);
+  --gradient-card: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(59,130,246,0.06));
+  --gradient-btn: linear-gradient(135deg, #7C3AED, #5B21B6);
+}
+
+/* Light mode overrides */
+.light {
+  --bg-primary: #F8F7FF;
+  --bg-secondary: #EEEDF8;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F3F2FF;
+  --border: rgba(0,0,0,0.08);
+  --border-bright: rgba(99,60,180,0.35);
+  --text-primary: #1A1830;
+  --text-secondary: #4A4768;
+  --text-muted: #8A87A8;
+  --accent-indigo: #6D28D9;
+  --accent-violet: #7C3AED;
+  --accent-blue: #2563EB;
+  --accent-cyan: #0891B2;
+  --glow-indigo: rgba(109,40,217,0.15);
+  --glow-violet: rgba(124,58,237,0.12);
+  --glow-blue: rgba(37,99,235,0.15);
+  --nav-bg: rgba(248,247,255,0.9);
+  --gradient-hero: linear-gradient(135deg, #6D28D9 0%, #2563EB 50%, #0891B2 100%);
+  --gradient-card: linear-gradient(135deg, rgba(109,40,217,0.06), rgba(37,99,235,0.03));
+  --gradient-btn: linear-gradient(135deg, #6D28D9, #4C1D95);
+}
+
+/* ===============================
+   BASE STYLES
+=============================== */
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Sora', sans-serif;
+}
+
+/* ===============================
+   SCROLLBAR
+=============================== */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--accent-indigo); border-radius: 4px; }
+
+/* ===============================
+   UTILITY: GRADIENT TEXT
+=============================== */
+.gradient-text {
+  background: var(--gradient-hero);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===============================
+   UTILITY: GLOW PULSE DOT
+=============================== */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+@keyframes float-glow {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.05); }
+  66% { transform: translate(-20px, 30px) scale(0.95); }
+}
+
+@keyframes arrow-pulse {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(8px); }
+}
