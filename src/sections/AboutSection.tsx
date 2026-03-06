@@ -4,7 +4,7 @@
 // ===============================
 
 import { motion } from 'framer-motion';
-import { Code2, Zap, Coffee, BookOpen, Gamepad2 } from 'lucide-react';
+import { Code2, Zap, Coffee, BookOpen } from 'lucide-react';
 
 // ================================================================
 // ✏️ EDITABLE ZONE — Update all personal details below

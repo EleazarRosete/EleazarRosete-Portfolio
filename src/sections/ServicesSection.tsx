@@ -4,7 +4,7 @@
 // ===============================
 
 import { motion } from 'framer-motion';
-import { Clock } from 'lucide-react';
+// import { Clock } from 'lucide-react';
 import { Service } from '../data/services';
 
 interface ServicesSectionProps {
