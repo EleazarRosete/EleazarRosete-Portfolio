@@ -19,7 +19,7 @@ const EXPERTISE = [
   {
     icon: '⚡',
     title: 'Business Automation',
-    description: 'End-to-end workflow automation using n8n and similar tools. From PDF data extraction to client onboarding — I eliminate manual bottlenecks.',
+    description: 'Building scalable workflow automation with n8n and similar platforms — optimizing lead handling, internal processes, and client onboarding..',
   },
   {
     icon: '🤖',

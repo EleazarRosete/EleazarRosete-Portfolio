@@ -44,20 +44,20 @@ export const services: Service[] = [
     featured: false,
   },
   {
-    icon: "🤖",
-    title: "AI Workflow Integrations",
-    description:
-      "Add practical AI capabilities to your workflows such as chatbots, document processing, and automated responses.",
-    features: [
-      "Chatbot setup using OpenAI / LLMs",
-      "Document processing & extraction",
-      "AI-assisted email workflows",
-      "Simple knowledge-base chatbots",
-      "Integration with existing automation tools",
-    ],
-    delivery: "7–14 days",
-    featured: false,
-  },
+  icon: "🤖",
+  title: "AI Workflow Integrations",
+  description:
+    "Integrate practical AI capabilities into your workflows such as chatbots, automated responses, and intelligent task handling.",
+  features: [
+    "Chatbot setup using OpenAI / LLMs",
+    "AI-powered customer support workflows",
+    "AI-assisted email and response automation",
+    "Simple knowledge-base chatbots",
+    "Integration with existing automation tools",
+  ],
+  delivery: "7–14 days",
+  featured: false,
+},
   {
     icon: "🔍",
     title: "Automation Consultation",

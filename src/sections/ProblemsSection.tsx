@@ -10,50 +10,39 @@ import { motion } from 'framer-motion';
 // ===============================
 const PAIN_POINTS = [
   {
-    icon: '😩',
-    title: 'Manual data entry is eating your time',
-    desc: 'Hours spent copying from PDFs into spreadsheets instead of doing actual work.',
-  },
-  {
     icon: '📅',
     title: 'Booking system is chaotic',
-    desc: "Clients can't book easily online. You're managing everything manually via DMs.",
+    desc: "Clients can't book easily online. Managing appointments manually is stressful and error-prone.",
   },
   {
     icon: '🐌',
     title: 'Lead follow-up is inconsistent',
-    desc: 'Leads fall through the cracks because outreach relies entirely on memory.',
+    desc: 'Potential clients slip through the cracks because outreach and follow-ups rely on memory.',
   },
   {
     icon: '💸',
     title: 'Outdated website is costing you clients',
-    desc: 'Your site looks old, is not mobile-friendly, and gives no reason to trust you.',
+    desc: 'Your site looks old, isn’t mobile-friendly, and fails to inspire trust or convert visitors.',
   },
 ];
 
 const SOLUTIONS = [
   {
     icon: '✅',
-    title: 'Automated PDF-to-spreadsheet pipeline',
-    desc: 'Upload a PDF, data extracts and appends to your sheet automatically. Zero manual work.',
-  },
-  {
-    icon: '✅',
     title: 'Seamless online booking integration',
-    desc: 'Clients book 24/7 through your website with Calendly or a custom booking system.',
+    desc: 'Clients can book 24/7 via your website with Calendly or a custom booking system, reducing manual work.',
   },
   {
     icon: '✅',
-    title: 'AI cold email outreach on autopilot',
-    desc: 'Reads leads from a sheet, personalizes every email with AI, sends automatically.',
+    title: 'Automated client follow-ups',
+    desc: 'AI-powered workflows handle lead outreach, reminders, and follow-ups automatically, ensuring nothing falls through the cracks.',
   },
   {
     icon: '✅',
     title: 'Modern, high-converting website',
-    desc: 'Professional design, fast performance, mobile-ready, and built to turn visitors into clients.',
+    desc: 'Professional, mobile-ready design with fast performance — built to inspire trust and convert visitors into clients.',
   },
 ];
-
 export default function ProblemsSection() {
   return (
     <section id="problems" style={{ padding: '100px 0', position: 'relative' }}>

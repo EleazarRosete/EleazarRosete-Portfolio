@@ -7,6 +7,7 @@
 import tutor from '../assets/tutor.png';
 import harborviewFramer from '../assets/harborview-framer.jpg';
 import lucamoretti from '../assets/lucamoretti.jpg';
+import coldEmail from '../assets/cold-email.jpg';
 
 
 export interface Project {
@@ -30,7 +31,7 @@ export const projects: Project[] = [
     title: "Online Tutor Platform",
     summary: "Full-featured tutoring platform where students browse courses, view teachers, book sessions, and manage bookings.",
     problem: "An educational startup needed a professional platform where students could discover tutors, schedule sessions, and manage their bookings — all without manual coordination from the admin team.",
-    solution: "Built a full-stack tutoring platform featuring a course and teacher directory, integrated booking system with session management, and a clean admin panel for managing users, schedules, and payments.",
+    solution: "Built a full-stack tutoring platform featuring a course and teacher directory, integrated booking system with session management, and a clean admin panel for managing teachers, and courses.",
     tech: ["React", "TailwindCSS"],
     outcome: "The platform launched within 2 weeks. Admin workload for booking management was reduced by over 80%, allowing the team to focus on curriculum rather than logistics.",
     demo: "https://tutor-two-peach.vercel.app/",
@@ -45,7 +46,7 @@ export const projects: Project[] = [
     solution: "Designed and built a fully custom single-page portfolio site with a dark cinematic aesthetic inspired by film editing software. Key features include: a scrollable horizontal showreel vault with five project case study modals (objectives, approach, color grading process, and results), an interactive NLE timeline UI showcasing services, a before/after color grading comparison slider, a process walkthrough section, and a direct contact form — all with smooth scroll reveals, a custom cursor, and a film grain atmosphere.",
     tech: ["HTML/CSS/JS", "Responsive Design", "CSS Animations", "IntersectionObserver"],
     outcome: "Luca now has a professional portfolio that communicates his cinematic sensibility before a single word is read. The site presents 5 detailed case studies — including a Nike campaign with 12M+ YouTube views and a short film with a 9.1 IMDb score — giving prospective clients full confidence in his process and track record.",
-    demo: "https://harborview.vercel.app",
+    demo: "https://lucamoretti.vercel.app/",
   },
    {
     id: 3,
@@ -61,30 +62,6 @@ export const projects: Project[] = [
   },
   {
     id: 4,
-    icon: "📄",
-    tag: "Automation",
-    title: "n8n PDF Data Entry Automation",
-    summary: "Upload a PDF → Mistral OCR extracts data → automatically appended to a spreadsheet. Zero manual entry.",
-    problem: "A business team was spending hours per week manually reading PDF documents and copying data into Google Sheets — a tedious, error-prone process that scaled poorly.",
-    solution: "Built an n8n automation workflow: a PDF is uploaded to a trigger endpoint, Mistral's OCR API extracts structured information, and the extracted data is automatically appended to the correct spreadsheet columns — all in seconds.",
-    tech: ["n8n", "Mistral AI OCR", "Google Sheets API", "Webhooks"],
-    outcome: "Eliminated 100% of manual data entry for this process. What previously took hours now takes seconds per document. The team reported significant time savings within the first week of deployment.",
-    demo: "#",
-  },
-  {
-    id: 5,
-    icon: "💬",
-    tag: "Automation",
-    title: "Messenger Booking System",
-    summary: "A Messenger webhook-triggered booking system that manages appointments without any AI usage — saving the client on operating costs.",
-    problem: "A service-based business was managing bookings through Facebook Messenger manually. They needed an automated system but wanted to avoid recurring AI credit costs from chatbot solutions.",
-    solution: "Built a cost-efficient booking automation using n8n triggered by a Messenger webhook. The system handles booking requests, checks availability, confirms appointments, and sends reminders — all using structured logic without any AI model calls.",
-    tech: ["n8n", "Facebook Messenger API", "Webhooks", "Logic Flows"],
-    outcome: "The client now handles 100% of booking operations automatically. By avoiding AI usage entirely, operating costs remained minimal compared to AI-powered alternatives.",
-    demo: "#",
-  },
-  {
-    id: 6,
     icon: "🎉",
     tag: "Automation",
     title: "Client Onboarding Automation",
@@ -95,18 +72,18 @@ export const projects: Project[] = [
     outcome: "Onboarding time reduced from ~45 minutes to under 2 minutes. Zero errors since launch. Team morale improved as repetitive admin work was eliminated.",
     demo: "#",
   },
-  {
-    id: 7,
-    icon: "📬",
-    tag: "AI Automation",
-    title: "AI Cold Email Outreach System",
-    summary: "Reads leads from a spreadsheet, uses AI to personalize each email, and sends outreach automatically for lead generation campaigns.",
-    problem: "A B2B company wanted to run cold outreach campaigns but found writing personalized emails for every lead too time-consuming. Generic mass emails were getting ignored.",
-    solution: "Built an automated outreach pipeline: the system reads lead data from a Google Sheet, uses AI to craft a unique, context-aware email for each lead, and sends automatically through their connected inbox — at scale.",
-    tech: ["n8n", "OpenAI GPT", "Google Sheets", "Gmail", "Webhooks"],
-    outcome: "The client ran a 500-lead campaign in under 2 hours. Reply rates improved significantly compared to generic mass email blasts. The system continues to run campaigns with minimal oversight.",
-    demo: "#",
-  },
+{
+  id: 5,
+  icon: coldEmail,
+  tag: "AI Automation",
+  title: "AI Cold Email Outreach System",
+  summary: "Reads leads from a spreadsheet, uses AI to personalize each email, and sends outreach automatically for lead generation campaigns.",
+  problem: "A B2B company wanted to run cold outreach campaigns but found writing personalized emails for every lead too time-consuming. Generic mass emails were getting ignored.",
+  solution: "Built an automated outreach pipeline: the system reads lead data from a Google Sheet, and uses AI to craft a   fully personalized, context-aware email for each lead, then sends it automatically through their gmail inbox — enabling outreach at scale while maintaining a human touch.",
+  tech: ["n8n", "Gemini Chat Model", "Google Sheets", "Gmail", "Webhooks"],
+  outcome: "Based on the current processing speed of 10 leads every 135 seconds, the system could process 500 personalized cold emails in approximately 112.5 minutes (about 1 hour and 52 minutes) if sufficient AI credits were available. This enables scalable personalized outreach while maintaining higher engagement compared to generic mass email campaigns.",
+  demo: "https://www.loom.com/share/5c90e8d137214ccb94b6bc24f66ad320",
+}
   // {
   //   id: 8,
   //   icon: "🧠",
