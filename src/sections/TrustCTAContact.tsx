@@ -377,7 +377,7 @@ export function ContactSection() {
                   <option>AI Workflow Integrations</option>
                   <option>Automation Consultation</option>
                   <option>Other</option>
-                </select>
+                </select> 
               </div>
               {/* Message */}
               <div>

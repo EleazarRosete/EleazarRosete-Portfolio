@@ -8,7 +8,7 @@ import tutor from '../assets/tutor.png';
 import harborviewFramer from '../assets/harborview-framer.jpg';
 import lucamoretti from '../assets/lucamoretti.jpg';
 import coldEmail from '../assets/cold-email.jpg';
-import { col } from 'framer-motion/client';
+import onboarding from '../assets/client-onboarding.jpg';
 
 
 export interface Project {
@@ -67,7 +67,7 @@ export const projects: Project[] = [
   },
   {
     id: 4,
-    icon: coldEmail,
+    icon: onboarding,
     tag: "Automation",
     title: "Client Onboarding Automation",
     summary: "Auto folder creation, team notification, and AI-generated congratulatory email — triggered the moment a new client is signed.",
