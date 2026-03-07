@@ -8,6 +8,7 @@ import tutor from '../assets/tutor.png';
 import harborviewFramer from '../assets/harborview-framer.jpg';
 import lucamoretti from '../assets/lucamoretti.jpg';
 import coldEmail from '../assets/cold-email.jpg';
+import { col } from 'framer-motion/client';
 
 
 export interface Project {
@@ -21,6 +22,7 @@ export interface Project {
   tech: string[];
   outcome: string;
   demo?: string;
+  category: 'website' | 'automation';
 }
 
 export const projects: Project[] = [
@@ -35,8 +37,9 @@ export const projects: Project[] = [
     tech: ["React", "TailwindCSS"],
     outcome: "The platform launched within 2 weeks. Admin workload for booking management was reduced by over 80%, allowing the team to focus on curriculum rather than logistics.",
     demo: "https://tutor-two-peach.vercel.app/",
+    category: "website",
   },
-{
+  {
     id: 2,
     icon: lucamoretti,
     tag: "Freelance Video Editor Portfolio",
@@ -47,8 +50,9 @@ export const projects: Project[] = [
     tech: ["HTML/CSS/JS", "Responsive Design", "CSS Animations", "IntersectionObserver"],
     outcome: "Luca now has a professional portfolio that communicates his cinematic sensibility before a single word is read. The site presents 5 detailed case studies — including a Nike campaign with 12M+ YouTube views and a short film with a 9.1 IMDb score — giving prospective clients full confidence in his process and track record.",
     demo: "https://lucamoretti.vercel.app/",
+    category: "website",
   },
-   {
+  {
     id: 3,
     icon: harborviewFramer,
     tag: "Web Development",
@@ -59,41 +63,32 @@ export const projects: Project[] = [
     tech: ["Framer", "Calendly", "Responsive Design"],
     outcome: "Patient bookings increased significantly. The clinic now receives online appointment requests 24/7 without phone coordination. The Framer version became the preferred production site. You can check the coded version at: https://harborview.vercel.app",
     demo: "https://harborview.framer.ai",
+    category: "website",
   },
   {
     id: 4,
-    icon: "🎉",
+    icon: coldEmail,
     tag: "Automation",
     title: "Client Onboarding Automation",
     summary: "Auto folder creation, team notification, and AI-generated congratulatory email — triggered the moment a new client is signed.",
     problem: "An agency was manually onboarding each new client: creating project folders, notifying the team via Slack, and drafting welcome emails. The process was inconsistent and consumed valuable hours.",
     solution: "Built a one-click onboarding automation: when a new client is added, the workflow automatically creates their project folder in Google Drive, notifies the team on Slack, and uses AI to generate and send a personalized congratulatory onboarding email.",
-    tech: ["n8n", "Google Drive", "Slack API", "OpenAI", "Gmail" , "Google Sheet"],
+    tech: ["n8n", "Google Drive", "Slack API", "OpenAI", "Gmail", "Google Sheet"],
     outcome: "Onboarding time reduced from ~45 minutes to under 2 minutes. Zero errors since launch. Team morale improved as repetitive admin work was eliminated.",
     demo: "#",
+    category: "automation",
   },
-{
-  id: 5,
-  icon: coldEmail,
-  tag: "AI Automation",
-  title: "AI Cold Email Outreach System",
-  summary: "Reads leads from a spreadsheet, uses AI to personalize each email, and sends outreach automatically for lead generation campaigns.",
-  problem: "A B2B company wanted to run cold outreach campaigns but found writing personalized emails for every lead too time-consuming. Generic mass emails were getting ignored.",
-  solution: "Built an automated outreach pipeline: the system reads lead data from a Google Sheet, and uses AI to craft a   fully personalized, context-aware email for each lead, then sends it automatically through their gmail inbox — enabling outreach at scale while maintaining a human touch.",
-  tech: ["n8n", "Gemini Chat Model", "Google Sheets", "Gmail", "Webhooks"],
-  outcome: "Based on the current processing speed of 10 leads every 135 seconds, the system could process 500 personalized cold emails in approximately 112.5 minutes (about 1 hour and 52 minutes) if sufficient AI credits were available. This enables scalable personalized outreach while maintaining higher engagement compared to generic mass email campaigns.",
-  demo: "https://www.loom.com/share/5c90e8d137214ccb94b6bc24f66ad320",
-}
-  // {
-  //   id: 8,
-  //   icon: "🧠",
-  //   tag: "AI Development",
-  //   title: "RAG Chatbot (Company Knowledge Base)",
-  //   summary: "A Retrieval-Augmented Generation chatbot that answers questions based only on company documents — preventing hallucinations.",
-  //   problem: "A company wanted an intelligent chatbot to help their team and customers find answers quickly — but couldn't trust general AI models that might hallucinate or share incorrect information.",
-  //   solution: "Built a RAG chatbot that ingests and indexes the company's internal documents. When a user asks a question, the system retrieves relevant document sections and uses AI to synthesize a grounded, accurate answer — refusing to answer outside the knowledge base scope.",
-  //   tech: ["Python", "LangChain", "OpenAI", "Pinecone", "FastAPI", "React"],
-  //   outcome: "The chatbot successfully handles internal knowledge queries with high accuracy. Hallucination rate effectively reduced to near-zero within the document scope.",
-  //   demo: "#",
-  // },
+  {
+    id: 5,
+    icon: coldEmail,
+    tag: "AI Automation",
+    title: "AI Cold Email Outreach System",
+    summary: "Reads leads from a spreadsheet, uses AI to personalize each email, and sends outreach automatically for lead generation campaigns.",
+    problem: "A B2B company wanted to run cold outreach campaigns but found writing personalized emails for every lead too time-consuming. Generic mass emails were getting ignored.",
+    solution: "Built an automated outreach pipeline: the system reads lead data from a Google Sheet, and uses AI to craft a fully personalized, context-aware email for each lead, then sends it automatically through their gmail inbox — enabling outreach at scale while maintaining a human touch.",
+    tech: ["n8n", "Gemini Chat Model", "Google Sheets", "Gmail", "Webhooks"],
+    outcome: "Based on the current processing speed of 10 leads every 135 seconds, the system could process 500 personalized cold emails in approximately 112.5 minutes (about 1 hour and 52 minutes) if sufficient AI credits were available. This enables scalable personalized outreach while maintaining higher engagement compared to generic mass email campaigns.",
+    demo: "https://www.loom.com/share/5c90e8d137214ccb94b6bc24f66ad320",
+    category: "automation",
+  },
 ];
