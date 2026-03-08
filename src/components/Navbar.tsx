@@ -113,7 +113,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
               {/* Theme Toggle */}
               <button
                 onClick={toggleTheme}
-                title="Toggle theme"
+                aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
                 style={{
                   width: 38, height: 38,
                   borderRadius: 10,
@@ -125,7 +125,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
                   transition: 'all 0.2s',
                 }}
               >
-                {theme === 'dark' ? <Moon size={16} /> : <Sun size={16} />}
+                {theme === 'dark' ? <Moon size={16} aria-hidden="true" /> : <Sun size={16} aria-hidden="true" />}
               </button>
 
               {/* CTA Button — desktop only */}
@@ -156,6 +156,9 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
               <button
                 onClick={() => setMobileOpen(prev => !prev)}
                 className="nav-burger"
+                aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                aria-expanded={mobileOpen}
+                aria-controls="mobile-menu"
                 style={{
                   width: 38, height: 38, borderRadius: 10,
                   border: '1px solid var(--border)',
@@ -165,7 +168,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
                   cursor: 'pointer',
                 }}
               >
-                {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+                {mobileOpen ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
               </button>
             </div>
           </div>

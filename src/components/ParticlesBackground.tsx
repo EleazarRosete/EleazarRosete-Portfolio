@@ -95,7 +95,9 @@ export default function ParticlesBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-50"
+      aria-hidden="true"
+      role="presentation"
+      style={{ position: 'fixed', top: 0, left: 0, zIndex: 0 }}
     />
   );
 }

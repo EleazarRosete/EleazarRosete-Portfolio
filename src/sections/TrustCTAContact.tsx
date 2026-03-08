@@ -19,7 +19,7 @@ const TRUST_VALUES = [
 
 export function TrustSection() {
   return (
-    <section id="trust" style={{ padding: '100px 0', textAlign: 'center' }}>
+    <section id="trust" aria-label="Philosophy and values" style={{ padding: '100px 0', textAlign: 'center' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
         <motion.div
           initial={{ opacity: 0, y: 28 }}
@@ -36,11 +36,11 @@ export function TrustSection() {
             border: '1px solid rgba(168,85,247,0.25)', padding: '6px 14px',
             borderRadius: 100, marginBottom: 28,
           }}>
-            <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--accent-violet)', display: 'inline-block' }} />
+            <span aria-hidden="true" style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--accent-violet)', display: 'inline-block' }} />
             Philosophy
           </div>
 
-          <div style={{ width: 60, height: 3, background: 'var(--gradient-hero)', borderRadius: 3, margin: '0 auto 28px' }} />
+          <div aria-hidden="true" style={{ width: 60, height: 3, background: 'var(--gradient-hero)', borderRadius: 3, margin: '0 auto 28px' }} />
 
           <p style={{
             fontFamily: 'Sora, sans-serif',
@@ -76,13 +76,15 @@ export function TrustSection() {
                 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
                 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}
               >
-                <div style={{
-                  width: 52, height: 52, borderRadius: 14,
-                  background: 'var(--gradient-card)',
-                  border: '1px solid var(--border-bright)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: 20,
-                }}>
+                <div
+                  aria-hidden="true"
+                  style={{
+                    width: 52, height: 52, borderRadius: 14,
+                    background: 'var(--gradient-card)',
+                    border: '1px solid var(--border-bright)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: 20,
+                  }}>
                   {v.icon}
                 </div>
                 <span style={{ fontSize: '0.85rem', fontWeight: 500, color: 'var(--text-secondary)' }}>
@@ -102,7 +104,7 @@ export function TrustSection() {
 // ===============================
 export function CTASection() {
   return (
-    <section id="cta" style={{ padding: '70px 0' }}>
+    <section id="cta" aria-label="Call to action" style={{ padding: '70px 0' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
         <motion.div
           initial={{ opacity: 0, y: 28 }}
@@ -119,8 +121,8 @@ export function CTASection() {
             overflow: 'hidden',
           }}
         >
-          {/* Glow */}
-          <div style={{
+          {/* Glow — decorative */}
+          <div aria-hidden="true" style={{
             position: 'absolute', top: '-50%', left: '50%',
             transform: 'translateX(-50%)',
             width: 600, height: 600, borderRadius: '50%',
@@ -154,6 +156,7 @@ export function CTASection() {
 
           <a
             href="#contact"
+            aria-label="Go to contact section to discuss your project"
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
               padding: '15px 32px', borderRadius: 12,
@@ -172,7 +175,7 @@ export function CTASection() {
               e.currentTarget.style.boxShadow = '0 4px 24px var(--glow-indigo)';
             }}
           >
-            💬 Discuss Your Project
+            <span aria-hidden="true">💬</span> Discuss Your Project
           </a>
         </motion.div>
       </div>
@@ -194,10 +197,10 @@ export function ContactSection() {
     setStatus('sending');
     try {
       await emailjs.sendForm(
-        'service_6r5fizx',   // 🔧 Replace this
-        'template_d9i4vsc',  // 🔧 Replace this
+        'service_6r5fizx',
+        'template_d9i4vsc',
         formRef.current,
-        'yxOEHZm5eso6MWKPO'    // 🔧 Replace this
+        'yxOEHZm5eso6MWKPO'
       );
       setStatus('sent');
       formRef.current.reset();
@@ -232,8 +235,13 @@ export function ContactSection() {
     width: '100%', transition: 'border-color 0.2s',
   };
 
+  const labelStyle: React.CSSProperties = {
+    display: 'block', fontSize: '0.85rem', fontWeight: 500,
+    color: 'var(--text-secondary)', marginBottom: 8,
+  };
+
   return (
-    <section id="contact" style={{ background: 'var(--bg-secondary)', padding: '100px 0' }}>
+    <section id="contact" aria-label="Contact Eleazar Rosete" style={{ background: 'var(--bg-secondary)', padding: '100px 0' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
         <motion.div
           initial={{ opacity: 0, y: 28 }}
@@ -249,7 +257,7 @@ export function ContactSection() {
             border: '1px solid rgba(168,85,247,0.25)', padding: '6px 14px',
             borderRadius: 100, marginBottom: 20,
           }}>
-            <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--accent-violet)', display: 'inline-block' }} />
+            <span aria-hidden="true" style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--accent-violet)', display: 'inline-block' }} />
             Get In Touch
           </div>
           <h2 style={{
@@ -291,13 +299,13 @@ export function ContactSection() {
               {[
                 { icon: '📧', label: 'Email', value: 'ele.rosete@gmail.com', href: 'mailto:ele.rosete@gmail.com' },
                 { icon: '💼', label: 'LinkedIn', value: 'Connect professionally', href: 'https://www.linkedin.com/in/eleazar-rosete-461564370/' },
-  { icon: '📘', label: 'Facebook', value: 'Visit Profile', href: 'https://www.facebook.com/eleazar.rosete.2024' },
-
+                { icon: '📘', label: 'Facebook', value: 'Visit Profile', href: 'https://www.facebook.com/eleazar.rosete.2024' },
                 { icon: '🟢', label: 'WhatsApp', value: '+63-968-282-3420', href: 'https://wa.me/+639682823420' },
               ].map(link => (
                 <a
                   key={link.label}
                   href={link.href}
+                  aria-label={`Contact via ${link.label}: ${link.value}`}
                   target={link.href.startsWith('mailto') ? undefined : '_blank'}
                   rel="noopener noreferrer"
                   style={{
@@ -316,7 +324,7 @@ export function ContactSection() {
                     e.currentTarget.style.transform = 'translateX(0)';
                   }}
                 >
-                  <div style={{
+                  <div aria-hidden="true" style={{
                     width: 40, height: 40, borderRadius: 10,
                     background: 'var(--gradient-card)',
                     border: '1px solid var(--border-bright)',
@@ -341,50 +349,74 @@ export function ContactSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <form ref={formRef} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+            <form
+              ref={formRef}
+              aria-label="Contact form"
+              noValidate
+              style={{ display: 'flex', flexDirection: 'column', gap: 14 }}
+            >
               {/* Name */}
               <div>
-                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 500, color: 'var(--text-secondary)', marginBottom: 8 }}>
+                <label htmlFor="full_name" style={labelStyle}>
                   Full Name
                 </label>
-                <input type="text" name="full_name" placeholder="John Doe" style={inputStyle}
+                <input
+                  id="full_name"
+                  type="text"
+                  name="full_name"
+                  placeholder="John Doe"
+                  autoComplete="name"
+                  style={inputStyle}
                   onFocus={e => (e.currentTarget.style.borderColor = 'var(--accent-violet)')}
                   onBlur={e => (e.currentTarget.style.borderColor = 'var(--border)')}
                 />
               </div>
+
               {/* Email */}
               <div>
-                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 500, color: 'var(--text-secondary)', marginBottom: 8 }}>
+                <label htmlFor="reply_to" style={labelStyle}>
                   Email Address
                 </label>
-                <input type="email" name="reply_to" placeholder="johndoe@company.com" style={inputStyle}
+                <input
+                  id="reply_to"
+                  type="email"
+                  name="reply_to"
+                  placeholder="johndoe@company.com"
+                  autoComplete="email"
+                  style={inputStyle}
                   onFocus={e => (e.currentTarget.style.borderColor = 'var(--accent-violet)')}
                   onBlur={e => (e.currentTarget.style.borderColor = 'var(--border)')}
                 />
               </div>
-              {/* Service */}
+
+              {/* Project Type */}
               <div>
-                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 500, color: 'var(--text-secondary)', marginBottom: 8 }}>
+                <label htmlFor="project_type" style={labelStyle}>
                   Project Type
                 </label>
-                <select name="project_type" style={{ ...inputStyle, appearance: 'none', cursor: 'pointer' }}
+                <select
+                  id="project_type"
+                  name="project_type"
+                  style={{ ...inputStyle, appearance: 'none', cursor: 'pointer' }}
                   onFocus={e => (e.currentTarget.style.borderColor = 'var(--accent-violet)')}
                   onBlur={e => (e.currentTarget.style.borderColor = 'var(--border)')}
                 >
                   <option value="">Select a service…</option>
-                  <option>Website Development</option>
-                  <option>Workflow Automation</option>
-                  <option>AI Workflow Integrations</option>
-                  <option>Automation Consultation</option>
-                  <option>Other</option>
-                </select> 
+                  <option value="Website Development">Website Development</option>
+                  <option value="Workflow Automation">Workflow Automation</option>
+                  <option value="AI Workflow Integrations">AI Workflow Integrations</option>
+                  <option value="Automation Consultation">Automation Consultation</option>
+                  <option value="Other">Other</option>
+                </select>
               </div>
+
               {/* Message */}
               <div>
-                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 500, color: 'var(--text-secondary)', marginBottom: 8 }}>
+                <label htmlFor="message" style={labelStyle}>
                   Tell me about your project
                 </label>
                 <textarea
+                  id="message"
                   name="message"
                   rows={5}
                   placeholder="Describe your project, goals, and any relevant details…"
@@ -395,8 +427,11 @@ export function ContactSection() {
               </div>
 
               <button
+                type="submit"
                 onClick={handleSubmit}
                 disabled={status === 'sending'}
+                aria-disabled={status === 'sending'}
+                aria-live="polite"
                 style={{
                   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
                   padding: 15, borderRadius: 12,

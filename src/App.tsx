@@ -3,29 +3,38 @@
 // Orchestrates all sections and state
 // ===============================
 
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { useTheme } from './hooks/useTheme';
 
-// Components
+// Above-the-fold — loaded eagerly (user sees these immediately)
 import ParticlesBackground from './components/ParticlesBackground';
 import Navbar from './components/Navbar';
-import ProjectModal from './components/ProjectModal';
-import Footer from './components/Footer';
-
-// Sections
 import HeroSection from './sections/HeroSection';
-import ExpertiseSection from './sections/ExpertiseSection';
-import AboutSection from './sections/AboutSection';
-import ProblemsSection from './sections/ProblemsSection';
-import ProjectsSection from './sections/ProjectsSection';
-import ServicesSection from './sections/ServicesSection';
-import ProcessSection from './sections/ProcessSection';
-import { TrustSection, CTASection, ContactSection } from './sections/TrustCTAContact';
+
+// Below-the-fold — lazy loaded for better initial performance
+const AboutSection     = lazy(() => import('./sections/AboutSection'));
+const ExpertiseSection = lazy(() => import('./sections/ExpertiseSection'));
+const ProblemsSection  = lazy(() => import('./sections/ProblemsSection'));
+const ProjectsSection  = lazy(() => import('./sections/ProjectsSection'));
+const ServicesSection  = lazy(() => import('./sections/ServicesSection'));
+const ProcessSection   = lazy(() => import('./sections/ProcessSection'));
+const Footer           = lazy(() => import('./components/Footer'));
+const ProjectModal     = lazy(() => import('./components/ProjectModal'));
+
+// Named exports — wrap in a default export for lazy()
+const TrustSection   = lazy(() => import('./sections/TrustCTAContact').then(m => ({ default: m.TrustSection })));
+const CTASection     = lazy(() => import('./sections/TrustCTAContact').then(m => ({ default: m.CTASection })));
+const ContactSection = lazy(() => import('./sections/TrustCTAContact').then(m => ({ default: m.ContactSection })));
 
 // Data
 import { projects, Project } from './data/projects';
 import { services } from './data/services';
 import { processSteps } from './data/process';
+
+// Minimal fallback — preserves layout while section loads
+function SectionFallback() {
+  return <div style={{ minHeight: 200 }} aria-hidden="true" />;
+}
 
 export default function App() {
   const { theme, toggleTheme } = useTheme();
@@ -33,59 +42,74 @@ export default function App() {
 
   return (
     <>
-      {/* Animated particle background */}
+      {/* Animated particle background — always visible */}
       <ParticlesBackground />
 
-      {/* Sticky navigation */}
+      {/* Sticky navigation — always visible */}
       <Navbar theme={theme} toggleTheme={toggleTheme} />
 
       {/* =========================================
           PAGE SECTIONS — Conversion Story Order:
-          Hook → Authority → About → Proof →
+          Hook → About → Authority → Proof →
           Capabilities → Process → Trust → Action
       ========================================= */}
 
-      {/* 1. Hook — Cinematic split-layout Hero */}
+      {/* 1. Hook — eager, above the fold */}
       <HeroSection />
 
-      {/* 2. About — Personal story, timeline, fun facts */}
-      <AboutSection />
+      {/* 2–10. All below-fold sections lazy loaded */}
+      <Suspense fallback={<SectionFallback />}>
+        <AboutSection />
+      </Suspense>
 
-      {/* 3. Authority — Expertise / Credibility cards */}
-      <ExpertiseSection />
+      <Suspense fallback={<SectionFallback />}>
+        <ExpertiseSection />
+      </Suspense>
 
-      {/* 4. Proof (emotional) — Problem → Solution */}
-      <ProblemsSection />
+      <Suspense fallback={<SectionFallback />}>
+        <ProblemsSection />
+      </Suspense>
 
-      {/* 5. Proof (tangible) — Projects Showcase */}
-      <ProjectsSection
-        projects={projects}
-        onOpenProject={setSelectedProject}
-      />
+      <Suspense fallback={<SectionFallback />}>
+        <ProjectsSection
+          projects={projects}
+          onOpenProject={setSelectedProject}
+        />
+      </Suspense>
 
-      {/* 6. Capabilities — Services with delivery times */}
-      <ServicesSection services={services} />
+      <Suspense fallback={<SectionFallback />}>
+        <ServicesSection services={services} />
+      </Suspense>
 
-      {/* 7. Process — Professional 6-step workflow */}
-      <ProcessSection steps={processSteps} />
+      <Suspense fallback={<SectionFallback />}>
+        <ProcessSection steps={processSteps} />
+      </Suspense>
 
-      {/* 8. Trust — Philosophy statement */}
-      <TrustSection />
+      <Suspense fallback={<SectionFallback />}>
+        <TrustSection />
+      </Suspense>
 
-      {/* 9. Action — Final CTA */}
-      <CTASection />
+      <Suspense fallback={<SectionFallback />}>
+        <CTASection />
+      </Suspense>
 
-      {/* 10. Contact */}
-      <ContactSection />
+      <Suspense fallback={<SectionFallback />}>
+        <ContactSection />
+      </Suspense>
 
-      {/* Footer */}
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
 
-      {/* Project Detail Modal */}
-      <ProjectModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-      />
+      {/* Project Detail Modal — only mounts when a project is selected */}
+      {selectedProject && (
+        <Suspense fallback={null}>
+          <ProjectModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        </Suspense>
+      )}
     </>
   );
 }
