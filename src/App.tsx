@@ -58,16 +58,17 @@ export default function App() {
       <HeroSection />
 
       {/* 2–10. All below-fold sections lazy loaded */}
+
+      <Suspense fallback={<SectionFallback />}>
+        <ProblemsSection />
+      </Suspense>
+
       <Suspense fallback={<SectionFallback />}>
         <AboutSection />
       </Suspense>
 
       <Suspense fallback={<SectionFallback />}>
         <ExpertiseSection />
-      </Suspense>
-
-      <Suspense fallback={<SectionFallback />}>
-        <ProblemsSection />
       </Suspense>
 
       <Suspense fallback={<SectionFallback />}>

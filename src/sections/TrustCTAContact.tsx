@@ -165,6 +165,7 @@ export function CTASection() {
               boxShadow: '0 4px 24px var(--glow-indigo)',
               transition: 'all 0.25s',
               position: 'relative',
+              textDecoration: 'none',
             }}
             onMouseEnter={e => {
               e.currentTarget.style.transform = 'translateY(-2px)';
@@ -187,23 +188,35 @@ export function CTASection() {
 // SECTION: Contact
 // EDITABLE: Update email, LinkedIn, Messenger links
 // ===============================
+
 export function ContactSection() {
-  const formRef = useRef<HTMLFormElement>(null);
+  const [showResume, setShowResume] = useState(false);
+  const formRef = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
 
-  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     if (!formRef.current) return;
     setStatus('sending');
+
+    const inputs = formRef.current.querySelectorAll('input, select, textarea');
+    const formData: Record<string, string> = {};
+    inputs.forEach((el) => {
+      const input = el as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+      if (input.name) formData[input.name] = input.value;
+    });
+
     try {
-      await emailjs.sendForm(
+      await emailjs.send(
         'service_6r5fizx',
         'template_d9i4vsc',
-        formRef.current,
+        formData,
         'yxOEHZm5eso6MWKPO'
       );
       setStatus('sent');
-      formRef.current.reset();
+      inputs.forEach((el) => {
+        const input = el as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+        input.value = '';
+      });
       setTimeout(() => setStatus('idle'), 3000);
     } catch (err) {
       console.error(err);
@@ -233,6 +246,7 @@ export function ContactSection() {
     fontFamily: 'DM Sans, sans-serif', fontSize: '0.92rem',
     color: 'var(--text-primary)', outline: 'none',
     width: '100%', transition: 'border-color 0.2s',
+    boxSizing: 'border-box',
   };
 
   const labelStyle: React.CSSProperties = {
@@ -240,8 +254,16 @@ export function ContactSection() {
     color: 'var(--text-secondary)', marginBottom: 8,
   };
 
+  const links = [
+    { icon: '📄', label: 'Resume',   value: 'View & Download PDF',   href: '#',                                                        isResume: true  },
+    { icon: '📧', label: 'Email',    value: 'ele.rosete@gmail.com',   href: 'mailto:ele.rosete@gmail.com',                              isResume: false },
+    { icon: '💼', label: 'LinkedIn', value: 'Connect professionally', href: 'https://www.linkedin.com/in/eleazar-rosete-461564370/',    isResume: false },
+    { icon: '📘', label: 'Facebook', value: 'Visit Profile',          href: 'https://www.facebook.com/eleazar.rosete.2024',            isResume: false },
+    { icon: '🟢', label: 'WhatsApp', value: '+63-968-282-3420',       href: 'https://wa.me/+639682823420',                             isResume: false },
+  ];
+
   return (
-    <section id="contact" aria-label="Contact Eleazar Rosete" style={{ background: 'var(--bg-secondary)', padding: '100px 0' }}>
+    <section id="contact" aria-label="Contact Eleazar Rosete" style={{ background: 'var(--bg-secondary)', padding: '100px 0', position: 'relative', zIndex: 10 }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
         <motion.div
           initial={{ opacity: 0, y: 28 }}
@@ -296,17 +318,13 @@ export function ContactSection() {
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              {[
-                { icon: '📧', label: 'Email', value: 'ele.rosete@gmail.com', href: 'mailto:ele.rosete@gmail.com' },
-                { icon: '💼', label: 'LinkedIn', value: 'Connect professionally', href: 'https://www.linkedin.com/in/eleazar-rosete-461564370/' },
-                { icon: '📘', label: 'Facebook', value: 'Visit Profile', href: 'https://www.facebook.com/eleazar.rosete.2024' },
-                { icon: '🟢', label: 'WhatsApp', value: '+63-968-282-3420', href: 'https://wa.me/+639682823420' },
-              ].map(link => (
+              {links.map(link => (
                 <a
                   key={link.label}
-                  href={link.href}
+                  href={link.isResume ? undefined : link.href}
+                  onClick={link.isResume ? (e) => { e.preventDefault(); setShowResume(true); } : undefined}
                   aria-label={`Contact via ${link.label}: ${link.value}`}
-                  target={link.href.startsWith('mailto') ? undefined : '_blank'}
+                  target={!link.isResume && !link.href.startsWith('mailto') ? '_blank' : undefined}
                   rel="noopener noreferrer"
                   style={{
                     display: 'flex', alignItems: 'center', gap: 14,
@@ -314,6 +332,8 @@ export function ContactSection() {
                     background: 'var(--bg-card)',
                     border: '1px solid var(--border)',
                     transition: 'all 0.25s',
+                    textDecoration: 'none',
+                    cursor: 'pointer',
                   }}
                   onMouseEnter={e => {
                     e.currentTarget.style.borderColor = 'var(--border-bright)';
@@ -334,7 +354,7 @@ export function ContactSection() {
                     {link.icon}
                   </div>
                   <div>
-                    <div style={{ fontSize: '0.88rem', fontWeight: 600 }}>{link.label}</div>
+                    <div style={{ fontSize: '0.88rem', fontWeight: 600, color: 'var(--text-primary)' }}>{link.label}</div>
                     <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>{link.value}</div>
                   </div>
                 </a>
@@ -349,17 +369,14 @@ export function ContactSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <form
+            <div
               ref={formRef}
               aria-label="Contact form"
-              noValidate
               style={{ display: 'flex', flexDirection: 'column', gap: 14 }}
             >
               {/* Name */}
               <div>
-                <label htmlFor="full_name" style={labelStyle}>
-                  Full Name
-                </label>
+                <label htmlFor="full_name" style={labelStyle}>Full Name</label>
                 <input
                   id="full_name"
                   type="text"
@@ -374,9 +391,7 @@ export function ContactSection() {
 
               {/* Email */}
               <div>
-                <label htmlFor="reply_to" style={labelStyle}>
-                  Email Address
-                </label>
+                <label htmlFor="reply_to" style={labelStyle}>Email Address</label>
                 <input
                   id="reply_to"
                   type="email"
@@ -391,9 +406,7 @@ export function ContactSection() {
 
               {/* Project Type */}
               <div>
-                <label htmlFor="project_type" style={labelStyle}>
-                  Project Type
-                </label>
+                <label htmlFor="project_type" style={labelStyle}>Project Type</label>
                 <select
                   id="project_type"
                   name="project_type"
@@ -412,9 +425,7 @@ export function ContactSection() {
 
               {/* Message */}
               <div>
-                <label htmlFor="message" style={labelStyle}>
-                  Tell me about your project
-                </label>
+                <label htmlFor="message" style={labelStyle}>Tell me about your project</label>
                 <textarea
                   id="message"
                   name="message"
@@ -427,7 +438,7 @@ export function ContactSection() {
               </div>
 
               <button
-                type="submit"
+                type="button"
                 onClick={handleSubmit}
                 disabled={status === 'sending'}
                 aria-disabled={status === 'sending'}
@@ -455,10 +466,96 @@ export function ContactSection() {
               >
                 {btnLabel}
               </button>
-            </form>
+            </div>
           </motion.div>
         </div>
       </div>
+
+      {/* Resume Modal */}
+      {showResume && (
+        <>
+          <style>{`
+            .resume-backdrop {
+              position: fixed; inset: 0; z-index: 1000;
+              background: rgba(0,0,0,0.75); backdrop-filter: blur(6px);
+              display: flex; align-items: center; justify-content: center;
+              padding: 16px;
+            }
+            .resume-modal {
+              background: var(--bg-card);
+              border: 1px solid var(--border);
+              border-radius: 16px;
+              overflow: hidden;
+              width: 100%;
+              max-width: 800px;
+              height: 70vh;
+              max-height: 90dvh;
+              display: flex; flex-direction: column;
+            }
+          `}</style>
+
+          <div className="resume-backdrop" onClick={() => setShowResume(false)}>
+            <div className="resume-modal" onClick={e => e.stopPropagation()}>
+
+              {/* Modal Header */}
+              <div style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                padding: '14px 16px', borderBottom: '1px solid var(--border)',
+                flexShrink: 0, gap: 8,
+              }}>
+                <span style={{
+                  fontFamily: 'Sora, sans-serif', fontWeight: 600,
+                  fontSize: 'clamp(0.82rem, 3vw, 1rem)',
+                  color: 'var(--text-primary)',
+                  overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                }}>
+                  📄 Eleazar Rosete — Resume
+                </span>
+
+                <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
+                  <a
+                    href="/src/assets/resume.pdf"
+                    download="Eleazar_Rosete_Resume.pdf"
+                    onClick={e => e.stopPropagation()}
+                    style={{
+                      padding: '8px 14px', borderRadius: 8,
+                      background: 'var(--gradient-btn)',
+                      color: '#fff', fontWeight: 600,
+                      fontSize: 'clamp(0.75rem, 2.5vw, 0.85rem)',
+                      textDecoration: 'none', fontFamily: 'DM Sans, sans-serif',
+                      display: 'inline-flex', alignItems: 'center', gap: 5,
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    ⬇ Download
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => setShowResume(false)}
+                    style={{
+                      padding: '8px 12px', borderRadius: 8,
+                      background: 'transparent',
+                      border: '1px solid var(--border)',
+                      color: 'var(--text-secondary)', cursor: 'pointer',
+                      fontSize: '1rem', lineHeight: 1, flexShrink: 0,
+                    }}
+                  >
+                    ✕
+                  </button>
+                </div>
+              </div>
+
+              {/* PDF Viewer */}
+              <iframe
+                src="/src/assets/resume.pdf"
+                title="Eleazar Rosete Resume"
+                style={{ width: '100%', flex: 1, border: 'none', minHeight: 0 }}
+              />
+            </div>
+          </div>
+        </>
+      )}
+
     </section>
   );
 }
