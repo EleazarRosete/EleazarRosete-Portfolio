@@ -547,7 +547,7 @@ export function ContactSection() {
 
               {/* PDF Viewer */}
               <iframe
-                src="/src/assets/resume.pdf"
+                src="/resume.pdf"
                 title="Eleazar Rosete Resume"
                 style={{ width: '100%', flex: 1, border: 'none', minHeight: 0 }}
               />
