@@ -153,7 +153,7 @@ export default function AboutSection() {
               }}>
                 <div style={{ fontSize: '1rem' }}>Eleazar Rosete</div>
                 <div style={{ fontSize: '0.75rem', color: 'var(--accent-violet)', fontFamily: 'JetBrains Mono, monospace' }}>
-              @dsgnbyzar  
+              ele.rosete@gmail.com 
                 </div>
               </div>
             </div>
