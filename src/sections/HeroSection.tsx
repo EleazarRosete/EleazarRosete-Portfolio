@@ -14,9 +14,8 @@ const HERO_STATS = [
 ];
 
 const SOCIAL_LINKS = [
-    { icon: Mail, href: 'mailto:ele.rosete@gmail.com', label: 'Gmail' },
-  { icon: Linkedin, href: 'https://www.linkedin.com/in/eleazar-rosete-461564370/', label: 'LinkedIn' },
-  { icon: Instagram,  href: 'https://www.instagram.com/dsgnbyzar/',  label: 'Instagram'  },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/eleazar-rosete-461564370/', label: 'LinkedIn' },
+    { icon: Instagram,  href: 'https://www.instagram.com/dsgnbyzar/',  label: 'Instagram'  },
 ];
 
 function useTypingCycle(words: string[], typingSpeed = 75, deletingSpeed = 40, pauseMs = 1800) {

@@ -256,7 +256,6 @@ export function ContactSection() {
 
   const links = [
     { icon: '📄', label: 'Resume',   value: 'View & Download PDF',   href: '#',                                                        isResume: true  },
-    { icon: '📧', label: 'Email',    value: 'ele.rosete@gmail.com',   href: 'mailto:ele.rosete@gmail.com',                              isResume: false },
     { icon: '💼', label: 'LinkedIn', value: 'Connect professionally', href: 'https://www.linkedin.com/in/eleazar-rosete-461564370/',    isResume: false },
     { icon: '📘', label: 'Facebook', value: 'Visit Profile',          href: 'https://www.facebook.com/eleazar.rosete.2024',            isResume: false },
     { icon: '🟢', label: 'WhatsApp', value: '+63-968-282-3420',       href: 'https://wa.me/+639682823420',                             isResume: false },
