@@ -8,7 +8,7 @@ const HERO_TAGLINE = 'I build websites and automation systems that solve real bu
 
 const HERO_STATS = [
   { num: '2+',      label: 'Websites Delivered',                 description: 'Custom, responsive, and high-performance websites built for clients.' },
-  { num: '5+',      label: 'Automation Systems Live',            description: 'AI and workflow automation pipelines actively improving efficiency.' },
+  { num: '2+',      label: 'Automation Systems Live',            description: 'AI and workflow automation pipelines actively improving efficiency.' },
   { num: '2x',      label: 'Faster Processes',                   description: 'Automated workflows that cut operational time in half.' },
   { num: '100%',    label: 'Performance-Optimized Sites',        description: 'Websites designed for speed, SEO, and mobile-first user experience.' },
 ];
